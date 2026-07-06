@@ -1,30 +1,49 @@
 <?php
+echo "<pre>"; // Makes the output clean and easy to read in the browser
 
-$days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-$months = [
-    "January" => 31, "February" => 28, "March" => 31, "April" => 30,
-    "May" => 31, "June" => 30, "July" => 31, "August" => 31,
-    "September" => 30, "October" => 31, "November" => 30, "December" => 31
-];
-
-$laptops = [
-    "Apple" => ["MacBook Air" => 1099, "MacBook Pro" => 2499],
-    "Dell" => ["XPS 13" => 999, "Inspiron" => 599]
-];
+// --- USER INPUT SORTING ---
+// Let's assume the user entered this unsorted array
+$userInput = ["Banana", "Apple", "Orange", "Grapes"];
+sort($userInput); // Sorts the array alphabetically (Apple, Banana, Grapes, Orange)
+echo "<b>Sorted User Input:</b>\n";
+print_r($userInput);
+echo "----------------------------------------\n";
 
 
-echo "<h3>Days:</h3>" . implode(", ", $days);
+// 1) array_change_key_case()
+$user = ["name" => "Alex", "role" => "Dev"];
+print_r(array_change_key_case($user, CASE_UPPER));
 
-echo "<h3>Months & Days:</h3>";
-foreach ($months as $month => $daysCount) {
-    echo "$month has $daysCount days. <br>";
-}
+// 2) array_chunk() - Using months
+$months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
+print_r(array_chunk($months, 2));
 
-echo "<h3>Laptops:</h3>";
-foreach ($laptops as $brand => $models) {
-    foreach ($models as $model => $price) {
-        echo "$brand $model costs \$$price. <br>";
-    }
-}
+// 3) array_count_values()
+$fruits = ["Apple", "Orange", "Apple", "Banana", "Apple"];
+print_r(array_count_values($fruits));
+
+// 4) array_combine()
+$keys = ["id", "status"];
+$values = [101, "Active"];
+print_r(array_combine($keys, $values));
+
+
+// --- Setup a simple array for the next 4 functions ---
+$stack = [10, 20, 30];
+
+// 5) array_pop() - Removes from the end (Removes 30)
+array_pop($stack);
+print_r($stack);
+
+// 6) array_push() - Adds to the end (Adds 40)
+array_push($stack, 40);
+print_r($stack);
+
+// 7) array_unshift() - Adds to the front (Adds 5)
+array_unshift($stack, 5);
+print_r($stack);
+
+// 8) array_shift() - Removes from the front (Removes 5)
+array_shift($stack);
+print_r($stack);
 ?>
