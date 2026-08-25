@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cookie Storage</title>
+</head>
+<body>
+    <h2>Cookie Storage</h2>
+    <input type="text" id="cookieKey" placeholder="Key">
+    <input type="text" id="cookieValue" placeholder="Value">
+    <button onclick="saveCookie()">Save</button>
+    <br><br>
+    <input type="text" id="searchKey" placeholder="Key">
+    <button onclick="getCookie()">Retrieve</button>
+    <p id="result"></p>
+
+    <script>
+        function saveCookie() {
+            const key = document.getElementById('cookieKey').value;
+            const value = document.getElementById('cookieValue').value;
+            document.cookie = `${key}=${value};path=/;max-age=86400`;
+            alert('Saved');
+        }
+
+        function getCookie() {
+            const searchKey = document.getElementById('searchKey').value;
+            const cookies = document.cookie.split(';');
+            let val = 'Not Found';
+            for (let c of cookies) {
+                const [k, v] = c.trim().split('=');
+                if (k === searchKey) {
+                    val = v;
+                    break;
+                }
+            }
+            document.getElementById('result').innerText = `Value: ${val}`;
+        }
+    </script>
+</body>
+</html>
